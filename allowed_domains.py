@@ -7,6 +7,10 @@ from urllib.parse import urlparse
 
 # Canonical allowlist — only public sites with no PII risk
 ALLOWED_PATTERNS = [
+    # MSL sites (primary capture targets)
+    r"(^|\.)msl\.org\.il$",
+    r"(^|\.)kitchen\.msl\.org\.il$",
+    r"(^|\.)globalfinanceschool\.com$",
     # Israeli government
     r"(^|\.)gov\.il$",
     r"(^|\.)cbs\.gov\.il$",       # Central Bureau of Statistics
