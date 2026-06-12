@@ -36,7 +36,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright Chromium (deps installed manually above — avoids broken font packages on Bookworm)
+# Install Playwright Chromium (deps installed manually above — avoids broken font packages)
 RUN playwright install chromium
 
 COPY . .
@@ -44,4 +44,5 @@ COPY . .
 ENV PORT=8080
 EXPOSE 8080
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Shell form so Railway's $PORT env var expands correctly
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8080}"]
